@@ -1,4 +1,4 @@
-# Tweeter Searcher
+# Twitter Searcher
 
 This project demonstartes the usage of Insights for Twitter service on [Bluemix] using Golang
 
