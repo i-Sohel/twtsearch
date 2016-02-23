@@ -6,7 +6,7 @@ This project demonstartes the usage of Insights for Twitter service on [Bluemix]
 
 1. Create a new CloudFoundary Go web app on Bluemix
 2. Download the starter code.
-3. Copy `mainfest.yml` from the starter code package.
+3. Copy `manifest.yml` from the starter code package.
 4. Past it in the root folder of the project.
 5. Add Insights for Twitter service to the app
 6. Copy the services URL
