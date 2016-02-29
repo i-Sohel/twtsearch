@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"os"
 	"html/template"
-    "encoding/json"
-    "net/url"
+    	"encoding/json"
+    	"net/url"
 	//for extracting service credentials from VCAP_SERVICES
 	//"github.com/cloudfoundry-community/go-cfenv"
 )
@@ -83,7 +83,7 @@ type Ms struct {
 }
 
 const (
-	DEFAULT_PORT = "8080"
+    DEFAULT_PORT = "8080"
     size = "5"
     DEF_URL = "" // API URL you got from Bluemix service
 )
@@ -113,8 +113,8 @@ func results(w http.ResponseWriter, req *http.Request){
     keyword := req.FormValue("key") // Get the keywords from the template
     
     params := url.Values{}
-	params.Add("q", keyword) // Add the keyword to the map
-	finalUrl := DEF_URL + params.Encode() + "&size=" + size
+    params.Add("q", keyword) // Add the keyword to the map
+    finalUrl := DEF_URL + params.Encode() + "&size=" + size
     
     res := new(Ms)
     getJSON(finalUrl, res) // Get the data
@@ -133,8 +133,8 @@ func main() {
 	}
         
 	http.HandleFunc("/", httpserve)
-    http.HandleFunc("/results", results)
-    http.HandleFunc("/about", about)
+        http.HandleFunc("/results", results)
+        http.HandleFunc("/about", about)
 	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 	
 	log.Printf("Starting app on port %+v\n", port)
