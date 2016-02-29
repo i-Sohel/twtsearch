@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"os"
 	"html/template"
-    "fmt"
     "encoding/json"
+    "net/url"
 	//for extracting service credentials from VCAP_SERVICES
 	//"github.com/cloudfoundry-community/go-cfenv"
 )
@@ -110,11 +110,14 @@ func getJSON(url string, target interface{}) error {
 
 func results(w http.ResponseWriter, req *http.Request){
     req.ParseForm()
-    query := req.FormValue("key") // Get the keywords from the template
-    var url = DEF_URL + query + "&size=" + size // Construct the request url. The size here represents the number of returned tweets which is 5 at the moment
+    keyword := req.FormValue("key") // Get the keywords from the template
+    
+    params := url.Values{}
+	params.Add("q", keyword) // Add the keyword to the map
+	finalUrl := DEF_URL + params.Encode() + "&size=" + size
+    
     res := new(Ms)
-    getJSON(url, res) // Get the data
-    fmt.Println(res)
+    getJSON(finalUrl, res) // Get the data
     // Return the data to the template
     templates.ExecuteTemplate(w,"indexPage", res)
 }
